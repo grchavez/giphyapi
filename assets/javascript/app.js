@@ -21,13 +21,16 @@ $(".addAnime").on("click", function(event){
 	event.preventDefault();
 	var anime = $(".anime-input").val().trim();
 	animes.push(anime);
+	//Test log//
 	console.log(anime);
 	renderButtons();
 });
 
+
+
 // Giphy Function
 
-$(".cateBtn").on("click", function(){
+$(document).on("click", ".btn btn-secondary cateBtn", function(){
 
 	var input = $(this).attr("data-name");
 
@@ -52,22 +55,9 @@ $(".cateBtn").on("click", function(){
 				gifDiv.append(gifImage);
 
 				$(".gifResult").prepend(gifDiv);
-
-
 			}
 		}
-
-
-
 	})
-
-
-
-
-
-
-
-
-})
+});
 
 renderButtons();
