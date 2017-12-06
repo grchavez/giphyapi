@@ -34,7 +34,7 @@ $(document).on("click", ".btn btn-secondary cateBtn", function(){
 
 	var input = $(this).attr("data-name");
 
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "3d8Qjg9IrHbxpxvXioeXAgyAk5RNp5MO";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=3d8Qjg9IrHbxpxvXioeXAgyAk5RNp5MO";
 
 	$.ajax({
 		url: queryURL,
