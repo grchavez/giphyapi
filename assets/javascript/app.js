@@ -53,18 +53,22 @@ $(document).on("click", ".cateBtn", function(){
 	})
 	.done(function(response){
 
-		var results = response.data;
+		var results = response.data;	
 		for (var i = 0; i < results.length; i++){
 			if(results[i].rating !== "r" && results[i].rating !== "pg-13"){
-				var gifDiv = $("<div class='card'>");
+				var gifDiv = $("<div class='card' style='20rem;'>");
+				console.log(gifDiv);
 				var rating = results[i].rating;
+				console.log(rating);
 				var p = $("<p class='card-text'>").text("Rating: " + rating);
+				console.log(p);
 				var gifImage = $("<img class='card-img-top'>");
+				console.log(gifImage);
 				gifImage.attr("src", results[i].images.fixed_height.url);
-				gifDiv.append(p);
-				gifDiv.append(gifImage);
+				gifDiv.html(p);
+				gifDiv.html(gifImage);
 
-				$(".col-md-10 gifResult").prepend(gifDiv);
+				$(".gifResult").prepend(gifDiv);
 			}
 		}
 	})
