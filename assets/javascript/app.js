@@ -30,11 +30,22 @@ $(".addAnime").on("click", function(event){
 
 // Giphy Function
 
-$(document).on("click", ".btn btn-secondary cateBtn", function(){
+$(document).on("click", ".cateBtn", function(){
 
 	var input = $(this).attr("data-name");
+	console.log(input);
 
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=3d8Qjg9IrHbxpxvXioeXAgyAk5RNp5MO";
+		function encodedURL(str){
+			return encodeURIComponent(input);
+			
+		}
+
+
+
+
+
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +encodedURL(input)+ "&api_key=3d8Qjg9IrHbxpxvXioeXAgyAk5RNp5MO";
+	console.log(queryURL);
 
 	$.ajax({
 		url: queryURL,
@@ -43,7 +54,6 @@ $(document).on("click", ".btn btn-secondary cateBtn", function(){
 	.done(function(response){
 
 		var results = response.data;
-
 		for (var i = 0; i < results.length; i++){
 			if(results[i].rating !== "r" && results[i].rating !== "pg-13"){
 				var gifDiv = $("<div class='card'>");
@@ -54,7 +64,7 @@ $(document).on("click", ".btn btn-secondary cateBtn", function(){
 				gifDiv.append(p);
 				gifDiv.append(gifImage);
 
-				$(".gifResult").prepend(gifDiv);
+				$(".col-md-10 gifResult").prepend(gifDiv);
 			}
 		}
 	})
