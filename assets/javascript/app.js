@@ -7,7 +7,7 @@ function renderButtons(){
 	for (var i = 0; i < animes.length; i++){
 		var a = $("<button>");
 		a.attr("type","button");
-		a.addClass("btn btn-secondary cateBtn");
+		a.addClass("btn btn-info cateBtn");
 		a.text(animes[i]);
 		a.attr("data-name", animes[i]);
 		$(".anime").append(a);
@@ -32,18 +32,14 @@ $(".addAnime").on("click", function(event){
 
 $(document).on("click", ".cateBtn", function(){
 
+	$(".gifResult").empty();
 	var input = $(this).attr("data-name");
 	console.log(input);
-
+		// Needed to encode URL to fix spacing issue in URL.
 		function encodedURL(str){
 			return encodeURIComponent(input);
 			
 		}
-
-
-
-
-
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +encodedURL(input)+ "&api_key=3d8Qjg9IrHbxpxvXioeXAgyAk5RNp5MO";
 	console.log(queryURL);
 
@@ -56,8 +52,8 @@ $(document).on("click", ".cateBtn", function(){
 		var results = response.data;	
 		for (var i = 0; i < results.length; i++){
 			if(results[i].rating !== "r" && results[i].rating !== "pg-13"){
-				var gifDiv = $("<div class='card' style='20rem;'>");
-				console.log(gifDiv);
+				var gifDiv = $("<div class='card'>");
+				var gifBody = $("<div class='card-body'>");
 				var rating = results[i].rating;
 				console.log(rating);
 				var p = $("<p class='card-text'>").text("Rating: " + rating);
@@ -65,9 +61,10 @@ $(document).on("click", ".cateBtn", function(){
 				var gifImage = $("<img class='card-img-top'>");
 				console.log(gifImage);
 				gifImage.attr("src", results[i].images.fixed_height.url);
-				gifDiv.html(p);
-				gifDiv.html(gifImage);
-
+				gifBody.text(p[0].innerHTML);
+				console.log(p[0].innerHTML);
+				gifDiv.append(gifBody)
+				gifBody.append(gifImage);
 				$(".gifResult").prepend(gifDiv);
 			}
 		}

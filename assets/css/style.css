@@ -5,5 +5,16 @@
 
 .gifResult {
 	padding-top: 20px;
+	column-count: 3;
+	column-gap: 5px;
 }
 
+
+.card {
+	display: inline-block;
+	width: 100%;
+}
+
+.cateBtn {
+	padding: auto;
+}
